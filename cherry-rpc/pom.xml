@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.cherry</groupId>
+        <artifactId>cherry</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>cn.cherry.rpc</groupId>
+    <artifactId>cherry-rpc</artifactId>
+
+
+    <!--spring-->
+    <dependencies>
+        <!--local jar-->
+        <dependency>
+            <groupId>cn.cherry.core</groupId>
+            <artifactId>cherry-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <!--scope：控制jar包在哪些范围被加载使用
+                compile（默认）：编译、测试、打包、运行；属于强依赖
+                provided：编译、测试；不会被打包；也不会参与运行
+                runtime：测试、打包、运行；例如JDBC驱动，适用于运行和测试阶段
+                test：测试；例：Junit
+                import：表示从其他pom文件导入dependency
+                system：和provided类似；依赖项不会从Maven仓库下载，而从本地文件系统下载。需要添加systemPath的属性来定义路径，一般用于引用外部jar包
+            -->
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>5.5.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.11.0</version>
+        </dependency>
+
+
+    </dependencies>
+
+</project>
