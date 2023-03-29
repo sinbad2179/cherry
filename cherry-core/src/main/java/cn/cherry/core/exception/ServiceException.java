@@ -10,19 +10,60 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public class ServiceException extends RuntimeException {
+public class ServiceException extends RuntimeException implements BaseErrorCode {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer code;
+    private final Integer code;
 
 
-    public ServiceException(String msg) {
-        super(msg);
+    /**
+     * 消息格式参数
+     */
+    private final Object[] args;
+
+    public ServiceException(final BaseErrorCode errorCode, Object... args) {
+        super(errorCode.getMsg());
+        this.code = errorCode.getCode();
+        this.args = args;
     }
 
-    public ServiceException(Integer code, String msg) {
+    public ServiceException(int code, String msg, Object... args) {
         super(msg);
         this.code = code;
+        this.args = args;
+    }
+
+    public ServiceException(String msg, Object... args) {
+        super(msg);
+        //TODO
+        this.code = ServiceErrorCode.SERVER_ERROR.getCode();
+        this.args = args;
+    }
+
+    public ServiceException(BaseErrorCode errorCode, String message, Object... args) {
+        super(message);
+        this.code = errorCode.getCode();
+        this.args = args;
+    }
+
+    public ServiceException(int code, String message, Throwable cause, Object... args) {
+        super(message, cause);
+        this.code = code;
+        this.args = args;
+    }
+
+    public ServiceException(BaseErrorCode errorCode, Throwable cause, Object... args) {
+        this(errorCode.getCode(), errorCode.getMsg(), cause, args);
+    }
+
+
+    @Override
+    public String getMsg() {
+        return null;
+    }
+
+    public int getCode() {
+        return code;
     }
 }

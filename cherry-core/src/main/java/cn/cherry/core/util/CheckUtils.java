@@ -49,12 +49,9 @@ public class CheckUtils {
     /**
      * Copy of {@code com.google.common.base.Preconditions#checkArgument}.
      */
-    public static void checkArgument(boolean expression,
-                                     String errorMessageTemplate,
-                                     Object... errorMessageArgs) {
+    public static void checkArgument(boolean expression, String errorMessageTemplate, Object... errorMessageArgs) {
         if (expression) {
-            throw new IllegalArgumentException(
-                    format(errorMessageTemplate, errorMessageArgs));
+            throw new IllegalArgumentException(format(errorMessageTemplate, errorMessageArgs));
         }
     }
 

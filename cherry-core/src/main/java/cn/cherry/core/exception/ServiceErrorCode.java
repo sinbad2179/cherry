@@ -10,10 +10,17 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum ServiceErrorCode implements BaseErrorCode<ServiceException> {
+public enum ServiceErrorCode implements BaseErrorCode {
 
 
     ARGS_IS_NULL(10001, "参数不能为空！"),
+
+
+    // ========================== 服务端错误 ==========================
+    /**
+     * 系统内部错误：500
+     */
+    SERVER_ERROR(500, "服务器繁忙~"),
 
     ;
 
@@ -28,5 +35,13 @@ public enum ServiceErrorCode implements BaseErrorCode<ServiceException> {
      */
     private final String errMsg;
 
+    @Override
+    public int getCode() {
+        return code;
+    }
 
+    @Override
+    public String getMsg() {
+        return null;
+    }
 }

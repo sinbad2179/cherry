@@ -1,5 +1,6 @@
 package cn.cherry.core.model;
 
+import cn.cherry.core.exception.BaseErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -45,5 +46,30 @@ public class Result<T> implements Serializable {
      */
     private transient Object[] args;
 
+    public Result(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
 
+    // =====TODO
+
+    /**
+     * 失败返回
+     */
+    public static <T> Result<T> failure(BaseErrorCode errorCode, Object... args) {
+        return failure(errorCode.getCode(), errorCode.getMsg(), args);
+    }
+
+
+    /**
+     * 失败返回
+     */
+    public static <T> Result<T> failure(int code, String msg, Object... args) {
+        return new Result<T>(code, msg).args(args);
+    }
+
+    private Result<T> args(Object[] args) {
+        this.args = args;
+        return this;
+    }
 }

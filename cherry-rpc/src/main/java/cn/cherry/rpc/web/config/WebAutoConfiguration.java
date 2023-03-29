@@ -1,7 +1,9 @@
 package cn.cherry.rpc.web.config;
 
+import cn.cherry.rpc.web.config.properties.WebRequestProperties;
 import cn.cherry.rpc.web.interceptor.GateInterceptor;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -15,8 +17,18 @@ import java.time.format.DateTimeFormatter;
  * @description： spring web配置
  */
 @Configurable
+@EnableConfigurationProperties(WebRequestProperties.class)
 public class WebAutoConfiguration implements WebMvcConfigurer {
 
+
+    /**
+     * 自定义请求配置
+     */
+    private final WebRequestProperties webRequestProperties;
+
+    public WebAutoConfiguration(WebRequestProperties webRequestProperties) {
+        this.webRequestProperties = webRequestProperties;
+    }
 
     /**
      * Add {@link Converter Converters} and {@link Formatter Formatters} in addition to the ones
