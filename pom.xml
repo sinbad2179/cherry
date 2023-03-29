@@ -14,6 +14,7 @@
         <module>cherry-core</module>
         <module>cherry-excel</module>
         <module>cherry-rpc</module>
+        <module>cherry-executor</module>
     </modules>
 
     <parent>
