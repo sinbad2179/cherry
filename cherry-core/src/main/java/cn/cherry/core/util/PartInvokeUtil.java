@@ -184,10 +184,7 @@ public class PartInvokeUtil {
      * @param <T>    结果
      */
     public static <T> void partInvoke(Consumer<List<T>> invoke, List<T> rows, int limit) {
-        if (CollectionUtil
-
-
-                .isEmpty(rows)) {
+        if (CollectionUtil.isEmpty(rows)) {
             return;
         }
         int size = rows.size();
@@ -204,10 +201,7 @@ public class PartInvokeUtil {
                 }
                 subRows = rows.subList(length, length + limit);
                 length += limit;
-                if (CollectionUtil
-
-
-                        .isEmpty(subRows)) {
+                if (CollectionUtil.isEmpty(subRows)) {
                     break;
                 }
                 invoke.accept(subRows);
@@ -281,10 +275,7 @@ public class PartInvokeUtil {
                 }
                 subRows = rows.subList(length, length + limit);
                 length += limit;
-                if (CollectionUtil
-
-
-                        .isEmpty(subRows)) {
+                if (CollectionUtil.isEmpty(subRows)) {
                     break;
                 }
                 result += invoke.apply(subRows);
@@ -344,10 +335,7 @@ public class PartInvokeUtil {
      * @return 影响行数
      */
     public static <T> Long partInvokeLongResult(Function<List<T>, Long> invoke, List<T> rows, int limit) {
-        if (CollectionUtil
-
-
-                .isEmpty(rows)) {
+        if (CollectionUtil.isEmpty(rows)) {
             return 0L;
         }
         int size = rows.size();
@@ -365,10 +353,7 @@ public class PartInvokeUtil {
                 }
                 subRows = rows.subList(length, length + limit);
                 length += limit;
-                if (CollectionUtil
-
-
-                        .isEmpty(subRows)) {
+                if (CollectionUtil.isEmpty(subRows)) {
                     break;
                 }
                 result += invoke.apply(subRows);
@@ -429,10 +414,7 @@ public class PartInvokeUtil {
      * @param <V>         结果
      */
     public static <P, V> void partInvoke(Consumer<InvokeModel<P, V>> invoke, InvokeModel<P, V> invokeModel, int limit) {
-        if (invokeModel == null || CollectionUtil
-
-
-                .isEmpty(invokeModel.getRows()) || ArrayUtils.isEmpty(invokeModel.getIds())) {
+        if (invokeModel == null || CollectionUtil.isEmpty(invokeModel.getRows()) || ArrayUtils.isEmpty(invokeModel.getIds())) {
             return;
         }
         P[] ids = invokeModel.getIds();
@@ -535,10 +517,7 @@ public class PartInvokeUtil {
      */
     public static <P, K, V> Map<K, V> partGetMap(Function<List<P>, Map<K, V>> invoke, List<P> params, int limit) {
 
-        if (CollectionUtil
-
-
-                .isEmpty(params)) {
+        if (CollectionUtil.isEmpty(params)) {
             return new HashMap<>(2);
         }
 
@@ -552,10 +531,7 @@ public class PartInvokeUtil {
             startIndex += limit;
 
             Map<K, V> tmp = invoke.apply(tmpParams);
-            if (CollectionUtil
-
-
-                    .isNotEmpty(tmp)) {
+            if (CollectionUtil.isNotEmpty(tmp)) {
                 map.putAll(tmp);
             }
         }
@@ -574,10 +550,7 @@ public class PartInvokeUtil {
      * @return 结果集
      */
     public static <P, Q, V> List<V> partGetByBiFunc(BiFunction<List<P>, Q[], List<V>> invoke, List<P> ids, Q[] params, int limit) {
-        if (CollectionUtil
-
-
-                .isEmpty(ids)) {
+        if (CollectionUtil.isEmpty(ids)) {
             return new ArrayList<>();
         }
         int size = ids.size();
