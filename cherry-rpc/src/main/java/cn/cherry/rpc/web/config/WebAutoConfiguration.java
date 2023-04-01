@@ -1,14 +1,23 @@
 package cn.cherry.rpc.web.config;
 
+import cn.cherry.rpc.web.advice.ResultResponseAdvice;
 import cn.cherry.rpc.web.config.properties.WebRequestProperties;
 import cn.cherry.rpc.web.interceptor.GateInterceptor;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.Ordered;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.Filter;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -26,6 +35,11 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
      */
     private final WebRequestProperties webRequestProperties;
 
+    /**
+     * 构造函数
+     *
+     * @param webRequestProperties
+     */
     public WebAutoConfiguration(WebRequestProperties webRequestProperties) {
         this.webRequestProperties = webRequestProperties;
     }
@@ -60,6 +74,43 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(getInterceptor()).addPathPatterns("/**").excludePathPatterns();
     }
 
+    /**
+     * 处理HTTP返回结果
+     *
+     * @return
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public ResultResponseAdvice resultResponseAdvice() {
+        return new ResultResponseAdvice();
+    }
+
+    /**
+     * 创建 CorsFilter 解决跨域问题
+     */
+    @Bean
+    public FilterRegistrationBean<CorsFilter> corsFilter() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        // 设置访问源地址
+        config.addAllowedOrigin("*");
+        // 设置访问源请求头
+        config.addAllowedHeader("*");
+        // 设置访问源请求方法
+        config.addAllowedMethod("*");
+        // 创建 UrlBasedCorsConfigurationSource 对象
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        // 对接口配置跨域设置
+        source.registerCorsConfiguration("/**", config);
+        return createFilterBean(new CorsFilter(source), Ordered.HIGHEST_PRECEDENCE);
+    }
+
+
+    private static <T extends Filter> FilterRegistrationBean<T> createFilterBean(T filter, Integer order) {
+        FilterRegistrationBean<T> bean = new FilterRegistrationBean<>(filter);
+        bean.setOrder(order);
+        return bean;
+    }
 
     /**
      * 获取日志打印拦截器

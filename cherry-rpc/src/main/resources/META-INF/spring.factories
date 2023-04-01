@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.cherry.rpc.web.config.WebAutoConfiguration

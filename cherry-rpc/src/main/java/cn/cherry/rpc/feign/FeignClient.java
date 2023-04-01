@@ -7,7 +7,7 @@ import cn.cherry.core.model.Result;
  * @time: 2023/2/27 20:07
  * @description： Feign调用接口
  */
-public interface FeignClient<REQ, RESP extends Result> {
+public interface FeignClient<REQ, RESP extends Result<?>> {
 
 
     /**
@@ -16,6 +16,6 @@ public interface FeignClient<REQ, RESP extends Result> {
      * @param request
      * @return
      */
-    RESP execute(REQ request);
+    RESP execute(REQ request, String path);
 
 }

@@ -11,7 +11,7 @@ import java.io.Serializable;
 /**
  * 响应结果
  *
- * @author <a href="kafka@88.com">刘伟(Marvin)</a>
+ * @author sinbad
  * @since 2022-01-14
  */
 @Data
