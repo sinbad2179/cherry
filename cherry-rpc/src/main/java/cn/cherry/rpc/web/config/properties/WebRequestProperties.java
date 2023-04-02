@@ -1,11 +1,11 @@
 package cn.cherry.rpc.web.config.properties;
 
 import cn.cherry.core.common.constants.IConstants;
+import cn.hutool.core.collection.CollectionUtil;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -33,12 +33,7 @@ public class WebRequestProperties {
     /**
      * log请求头
      */
-    private Set<String> logHeaders = new LinkedHashSet<>();
-
-    // init
-    {
-        logHeaders.add(IConstants.WebConstant.APPLICATION_NAME_HEADER);
-    }
+    private Set<String> logHeaders = CollectionUtil.newLinkedHashSet(IConstants.WebConstant.APPLICATION_NAME_HEADER);
 
 
 }

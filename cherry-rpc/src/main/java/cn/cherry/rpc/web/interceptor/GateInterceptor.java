@@ -9,6 +9,9 @@ import okio.Okio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.actuate.env.EnvironmentEndpoint;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.util.CollectionUtils;
@@ -37,8 +40,9 @@ public class GateInterceptor implements HandlerInterceptor {
     private final static Logger TRACE_LOGGER = LoggerFactory.getLogger("trace");
     private static final Logger LOGGER = LoggerFactory.getLogger(GateInterceptor.class);
 
+
     @Resource
-    private Environment env;
+    private ApplicationArguments args;
 
 
     /**
@@ -100,8 +104,8 @@ public class GateInterceptor implements HandlerInterceptor {
 
         TraceLog traceLog = new TraceLog();
         traceLog.setTraceId(MDC.get(IConstants.TRACE_ID))
-                .setServerPort(env.getProperty("server.port"))
-                .setServerName(env.getProperty("spring.application.name"))
+                .setServerPort(args.getOptionValues("server.port").get(0))
+                .setServerName(args.getOptionValues("spring.application.name").get(0))
                 .setMethod(request.getMethod())
                 .setUri(request.getRequestURI())
                 .setHeaders(buildHeaders(request))

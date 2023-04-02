@@ -18,6 +18,13 @@ public enum ServiceErrorCode implements BaseErrorCode {
 
     // ========================== 服务端错误 ==========================
     /**
+     * 成功：1
+     */
+    SUCCESS(0, "请求成功"),
+
+    FAILURE(1, "请求失败"),
+
+    /**
      * 系统内部错误：500
      */
     SERVER_ERROR(500, "服务器繁忙~"),
@@ -42,6 +49,6 @@ public enum ServiceErrorCode implements BaseErrorCode {
 
     @Override
     public String getMsg() {
-        return null;
+        return errMsg;
     }
 }
