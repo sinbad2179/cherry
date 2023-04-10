@@ -4,6 +4,9 @@ import cn.cherry.excel.dto.TestExportDTO;
 import cn.cherry.excel.model.BasicExportModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Arrays;
 
 /**
  * @author: sinbad.cheng
@@ -15,7 +18,7 @@ import lombok.Getter;
 public enum ExportEnum {
 
     // 导出方法测试
-    TEST_EXPORT("testExport","测试导出","asyncTestExport", TestExportDTO.class),
+    TEST_EXPORT("testExport", "测试导出", "asyncTestExport", TestExportDTO.class),
 
     ;
 
@@ -39,5 +42,16 @@ public enum ExportEnum {
      * 请求参数
      */
     private Class<? extends BasicExportModel> requestModel;
+
+
+    /**
+     * 匹配具体导出模块
+     *
+     * @param reqType
+     * @return
+     */
+    public static ExportEnum of(String reqType) {
+        return Arrays.stream(ExportEnum.values()).filter(v -> StringUtils.equals(v.getModuleType(), reqType)).findFirst().orElse(null);
+    }
 
 }

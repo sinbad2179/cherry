@@ -19,7 +19,7 @@ public class TestExportDTO extends BasicExportModel implements Serializable {
     /**
      * 查询集合id
      */
-    private String ids;
+    private String name;
 
     /**
      * 状态 0成功 1失败
