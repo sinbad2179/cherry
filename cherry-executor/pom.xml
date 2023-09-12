@@ -54,6 +54,14 @@
             <version>1.0.7</version>
         </dependency>
 
+        <!--https://dynamictp.cn/guide/use/quick-start.html-->
+        <dependency>
+            <groupId>org.dromara.dynamictp</groupId>
+            <artifactId>dynamic-tp-spring-boot-starter-apollo</artifactId>
+            <version>1.1.3</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>
