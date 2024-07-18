@@ -56,7 +56,6 @@ public class CherrySecurityProperties {
     private RsaKey rsaKey = new RsaKey();
 
 
-    @Data
     public static class RsaKey {
 
         /**
@@ -78,6 +77,38 @@ public class CherrySecurityProperties {
          * The password of the key from the key store
          */
         private String keyPassword;
+
+        public String getKeyStore() {
+            return keyStore;
+        }
+
+        public void setKeyStore(String keyStore) {
+            this.keyStore = keyStore;
+        }
+
+        public String getKeyStorePassword() {
+            return keyStorePassword;
+        }
+
+        public void setKeyStorePassword(String keyStorePassword) {
+            this.keyStorePassword = keyStorePassword;
+        }
+
+        public String getKeyAlias() {
+            return keyAlias;
+        }
+
+        public void setKeyAlias(String keyAlias) {
+            this.keyAlias = keyAlias;
+        }
+
+        public String getKeyPassword() {
+            return keyPassword;
+        }
+
+        public void setKeyPassword(String keyPassword) {
+            this.keyPassword = keyPassword;
+        }
 
     }
 
