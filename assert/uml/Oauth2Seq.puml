@@ -1,0 +1,54 @@
+@startuml
+actor       Actor       as actor
+participant 客户端  as client
+participant 服务器  as server
+
+
+skinparam sequenceMessageAlign right
+
+
+
+client->server: 授权请求
+note left
+'定义授权服务器的行为和功能
+'configure 方法会在 Spring Security OAuth2 的配置类中被调用，在启动应用程序时被 Spring 容器初始化，并且会在授权服务器启动时生效
+认证服务配置
+ 1.安全约束
+ 2.配置客户端信息
+ 3.token授权器
+    a.验证码
+    b.短信
+    c.社交登录
+ 4.令牌存储方式：JWT
+end note
+server->server: 生成OAuth2认证信息\n（AbstractTokenGranter#getOAuth2Authentication）
+
+alt SocialTokenGranter
+server->server: 构建授权内容（授权码）
+
+activate server
+server->server: 进行用户身份认证，\n(AuthenticationManager#authenticate)
+server->server: 遍历已注册的实现类，将其委托到其中的实现类中进行请求信息认证\n（ProviderManager#authenticate）
+alt SocialAuthenticationProvider
+server->server: 找到具体的社交授权方式，比如企微/飞书
+server->server: 执行具体认证逻辑（SocialAuthService#authenticate）
+
+else SmsAuthenticationProvider
+end
+deactivate server
+
+note left
+ 1.获取认证请求信息，如授权码
+ 2.校验用户身份
+ 3.构建认证结果
+ 4.抛出认证异常
+ 5.返回认证结果
+
+end note
+else  SmsTokenGranter
+
+end
+
+
+
+@enduml

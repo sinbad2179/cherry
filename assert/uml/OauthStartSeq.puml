@@ -1,0 +1,42 @@
+@startuml
+'participant ClientDetailsService  as client_detail
+participant AuthorizationServerConfigurer  as author_config
+
+
+skinparam sequenceMessageAlign right
+'
+'' 服务启动时初始化OAuth2.0客户端详细信息，在 @Configuration 注解标记的配置类中的 @Bean 方法执行完成后，@PostConstruct 注解标记的方法会被调用
+'client_detail->client_detail:OAuth2.0客户端详细信息初始化\n ClientDetailsServiceImpl#initClients
+
+' AuthorizationServerConfigurer的实现类会包含一组默认的配置，例如授权码模式、密码模式等，以便快速地搭建一个基本的 OAuth 2.0 授权服务器
+author_config->author_config:初始化认证服务配置\n AuthorizationServerConfiguration#AuthorizationServerConfiguration
+
+note left
+1.SandsAuthProperties 安全配置
+2.TencentCaptchaFeignClient 腾讯滑块验证类初始化
+3.BindOpenUserService 第三方授权服务类初始化
+4.UserDetailsService 认证用户详情服务类初始化
+5.ClientDetailsService OAuth2.0客户端详细信息初始化
+6.AuthenticationManager 初始化
+7.AuthorizationServerProperties 初始化
+
+end note
+
+'AuthorizationServerConfigurer#configure
+author_config->author_config:配置授权的服务Endpoint \n void configure(AuthorizationServerSecurityConfigurer security)
+
+
+note left
+1.令牌存储：TokenStore
+2.授权类型:TokenGranter，例如验证码、社交免登、密码
+3.令牌存储方式:jwt/redis
+end note
+
+author_config->author_config:配置客户端信息\n void configure(ClientDetailsServiceConfigurer clients)
+
+author_config->author_config:配置OAuth2发布出来的Endpoint本身的安全约束\n void configure(AuthorizationServerSecurityConfigurer security)
+
+
+
+
+@enduml

@@ -15,6 +15,7 @@
         <module>cherry-excel</module>
         <module>cherry-rpc</module>
         <module>cherry-executor</module>
+        <module>cherry-authenticate</module>
     </modules>
 
     <parent>
