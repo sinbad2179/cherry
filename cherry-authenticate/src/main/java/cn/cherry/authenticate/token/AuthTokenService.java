@@ -21,7 +21,15 @@ public class AuthTokenService extends DefaultTokenServices {
     private final TokenStore tokenStore;
     private final AuthUserDetailsService authUserDetailsService;
 
-
+    /**
+     * 自动装配
+     *
+     * @param tokenStore
+     * @param tokenEnhancer
+     * @param authenticationManager
+     * @param authUserDetailsService
+     * @param clientDetailsService
+     */
     public AuthTokenService(TokenStore tokenStore,
                             TokenEnhancer tokenEnhancer,
                             AuthenticationManager authenticationManager,

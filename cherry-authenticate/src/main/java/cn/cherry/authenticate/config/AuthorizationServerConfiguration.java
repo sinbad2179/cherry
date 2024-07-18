@@ -2,6 +2,7 @@ package cn.cherry.authenticate.config;
 
 import cn.cherry.authenticate.service.AuthUserDetailsService;
 import cn.cherry.authenticate.token.AuthTokenService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -34,9 +35,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     final AuthUserDetailsService authUserDetailsService;
 
 
-    public AuthorizationServerConfiguration(TokenStore tokenStore,
+    public AuthorizationServerConfiguration(@Qualifier(value = "cherryClientDetailsService") ClientDetailsService clientDetailsService,
+                                            TokenStore tokenStore,
                                             AuthTokenService authTokenService,
-                                            ClientDetailsService clientDetailsService,
                                             AuthenticationManager authenticationManager,
                                             AuthUserDetailsService authUserDetailsService) {
         this.tokenStore = tokenStore;
@@ -70,7 +71,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(clientDetailsService);// TODO 暂未做接口扩展
+        clients.withClientDetails(clientDetailsService);
     }
 
 
