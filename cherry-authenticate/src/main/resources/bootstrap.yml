@@ -7,4 +7,30 @@ spring:
     name: cherry-authenticate
   main:
     allow-bean-definition-overriding: true
-
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://10.24.12.181:3306/bosum?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+      username: yldbtest
+      password: yltest-123
+      initial-size: 16
+      max-active: 64
+      max-wait: 60000
+      min-idle: 16
+      filter:
+        wall:
+          # 开启filter wall（关闭）
+          enabled: false
+          config:
+            # 检查UPDATE语句的WHERE子句是否是一个永真条件
+            update-where-alay-true-check: true
+            # 检查UPDATE语句是否无where条件，这是有风险的，但不是SQL注入类型的风险
+            update-where-none-check: true
+            # 检查DELETE语句的WHERE子句是否是一个永真条件
+            delete-where-alway-true-check: true
+            # 检查DELETE语句是否无where条件
+            delete-where-none-check: true
+          # 对被认为是攻击的SQL进行LOG.error输出
+          log-violation: true
+          # 对被认为是攻击的SQL抛出SQLException
+          throw-exception: true

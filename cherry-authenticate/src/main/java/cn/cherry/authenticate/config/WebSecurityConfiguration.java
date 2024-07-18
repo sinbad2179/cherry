@@ -58,13 +58,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final RedisConnectionFactory redisConnectionFactory;
 
 
-
     public WebSecurityConfiguration(Environment environment,
                                     PasswordEncoder passwordEncoder,
-                                    ClientDetailsService clientDetailsService,
+                                    @Qualifier("cherryClientDetailsService") ClientDetailsService clientDetailsService,
                                     AccessDeniedHandler accessDeniedHandler,
                                     AuthenticationEntryPoint authenticationEntryPoint,
-                                    @Qualifier("cherryClientDetailsService") CherrySecurityProperties securityProperties,
+                                    CherrySecurityProperties securityProperties,
                                     RedisConnectionFactory redisConnectionFactory) {
         this.environment = environment;
         this.passwordEncoder = passwordEncoder;

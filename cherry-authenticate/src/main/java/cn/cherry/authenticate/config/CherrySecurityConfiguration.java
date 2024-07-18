@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -61,6 +63,14 @@ public class CherrySecurityConfiguration {
         return new ConfigInMemoryClientDetailsService(securityProperties);
     }
 
+    /**
+     * 密码编码器，使用算法 bcrypt
+     * https://github.com/xitu/gold-miner/blob/master/TODO1/password-hashing-pbkdf2-scrypt-bcrypt-and-argon2.md
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
     /**
      * 认证失败，Rest Json异常返回
      */

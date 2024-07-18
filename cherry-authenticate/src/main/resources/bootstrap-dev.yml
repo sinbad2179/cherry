@@ -1,20 +1,8 @@
-spring:
-  datasource:
-    druid:
-      url: jdbc:mysql://10.24.12.181:3306/bosum?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai
-      # 调小连接池
-      initial-size: 4
-      min-idle: 4
-      max-active: 16
-
-
-
-
 # cherry安全配置
 cherry:
   security:
     clients:
-      - clientId: bosum_student_mobile
+      - clientId: cherry_student_mobile
         clientSecret: "$2a$10$PVvQURFIXWQFU91isXnjwuIr/jIUdzbzUTRGeiOiN/xemAsvCcPWm"
         # 支持授权方式
         authorizedGrantTypes:
