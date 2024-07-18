@@ -60,9 +60,10 @@ public class ServiceException extends RuntimeException implements BaseErrorCode 
 
     @Override
     public String getMsg() {
-        return null;
+        return this.getMessage();
     }
 
+    @Override
     public int getCode() {
         return code;
     }
