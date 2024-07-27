@@ -9,17 +9,12 @@ import okio.Okio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.actuate.env.EnvironmentEndpoint;
-import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -41,14 +36,14 @@ public class GateInterceptor implements HandlerInterceptor {
     private static final Logger LOGGER = LoggerFactory.getLogger(GateInterceptor.class);
 
 
-    @Resource
-    private ApplicationArguments args;
-
-
     /**
      * 请求配置
      */
-    private WebRequestProperties webRequestProperties;
+    private final WebRequestProperties webRequestProperties;
+
+    public GateInterceptor(WebRequestProperties webRequestProperties) {
+        this.webRequestProperties = webRequestProperties;
+    }
 
 
     /**
@@ -104,8 +99,8 @@ public class GateInterceptor implements HandlerInterceptor {
 
         TraceLog traceLog = new TraceLog();
         traceLog.setTraceId(MDC.get(IConstants.TRACE_ID))
-                .setServerPort(args.getOptionValues("server.port").get(0))
-                .setServerName(args.getOptionValues("spring.application.name").get(0))
+//                .setServerPort(args.getOptionValues("server.port").get(0))
+//                .setServerName(args.getOptionValues("spring.application.name").get(0))
                 .setMethod(request.getMethod())
                 .setUri(request.getRequestURI())
                 .setHeaders(buildHeaders(request))

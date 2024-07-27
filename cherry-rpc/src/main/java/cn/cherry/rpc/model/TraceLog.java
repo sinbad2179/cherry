@@ -2,6 +2,7 @@ package cn.cherry.rpc.model;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import lombok.experimental.Delegate;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -20,10 +21,12 @@ public class TraceLog implements Serializable {
     /**
      * 应用端口号
      */
+    @Deprecated
     private String serverPort;
     /**
      * 应用名称
      */
+    @Deprecated
     private String serverName;
     private String method;
     private String uri;

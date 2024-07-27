@@ -118,6 +118,6 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
      * @return
      */
     public GateInterceptor getInterceptor() {
-        return new GateInterceptor();
+        return new GateInterceptor(webRequestProperties);
     }
 }
