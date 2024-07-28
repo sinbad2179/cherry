@@ -2,8 +2,6 @@ package cn.cherry.rpc.web.config.properties;
 
 import cn.cherry.core.common.constants.IConstants;
 import cn.hutool.core.collection.CollectionUtil;
-import lombok.Data;
-import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.Set;
@@ -13,8 +11,6 @@ import java.util.Set;
  * @time: 2023/2/26 21:08
  * @description： 请求配置
  */
-@Data
-@ToString
 @ConfigurationProperties(prefix = WebRequestProperties.REQUEST_PREFIX)
 public class WebRequestProperties {
 
@@ -35,5 +31,39 @@ public class WebRequestProperties {
      */
     private Set<String> logHeaders = CollectionUtil.newLinkedHashSet(IConstants.WebConstant.APPLICATION_NAME_HEADER);
 
+    public WebRequestProperties setSlowTime(Long slowTime) {
+        this.slowTime = slowTime;
+        return this;
+    }
 
+    public WebRequestProperties setReplaceResponseStatusCode(boolean replaceResponseStatusCode) {
+        this.replaceResponseStatusCode = replaceResponseStatusCode;
+        return this;
+    }
+
+    public WebRequestProperties setLogHeaders(Set<String> logHeaders) {
+        this.logHeaders = logHeaders;
+        return this;
+    }
+
+    public Long getSlowTime() {
+        return slowTime;
+    }
+
+    public boolean isReplaceResponseStatusCode() {
+        return replaceResponseStatusCode;
+    }
+
+    public Set<String> getLogHeaders() {
+        return logHeaders;
+    }
+
+    @Override
+    public String toString() {
+        return "WebRequestProperties{" +
+                "slowTime=" + slowTime +
+                ", replaceResponseStatusCode=" + replaceResponseStatusCode +
+                ", logHeaders=" + logHeaders +
+                '}';
+    }
 }

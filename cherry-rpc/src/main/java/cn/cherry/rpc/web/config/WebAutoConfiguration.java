@@ -23,11 +23,11 @@ import java.time.format.DateTimeFormatter;
 /**
  * @author: sinbad.cheng
  * @time: 2023/2/26 20:48
- * @description： spring web配置
+ * @description： spring web配置：它用于配置Spring MVC的组件，如视图解析器、静态资源处理、国际化、静态视图控制器等。通过实现这个类中的方法，开发者可以自定义MVC框架的行为。
  */
 @Configurable
 @EnableConfigurationProperties(WebRequestProperties.class)
-public class WebAutoConfiguration implements WebMvcConfigurer {
+public class WebAutoConfiguration implements WebMvcConfigurer,Ordered {
 
 
     /**
@@ -119,5 +119,10 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
      */
     public GateInterceptor getInterceptor() {
         return new GateInterceptor(webRequestProperties);
+    }
+
+    @Override
+    public int getOrder() {
+        return 0;
     }
 }
