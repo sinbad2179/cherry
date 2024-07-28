@@ -1,0 +1,23 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  # 404 默认抛异常，而不是跳转 404 页面
+  mvc:
+    throw-exception-if-no-handler-found: true
+  # 资源映射关闭，404 抛异常设置才生效
+  resources:
+    add-mappings: false
+
+cherry:
+  request:
+    log-headers:
+      - x-application-name
+      - user-agent
+      - x-request-id
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: shutdown
