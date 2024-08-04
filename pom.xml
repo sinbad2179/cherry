@@ -16,6 +16,7 @@
         <module>cherry-rpc</module>
         <module>cherry-executor</module>
         <module>cherry-authenticate</module>
+        <module>cherry-sync-es</module>
     </modules>
 
     <parent>

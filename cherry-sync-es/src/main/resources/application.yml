@@ -1,0 +1,14 @@
+es:
+  index-meta-map:
+    sys_user:
+      index: user
+      type: _doc
+      primary-column: id
+      create-time-column: create_time
+      index-suffix-format: yyyyMMdd
+      columns:
+        - id
+        - username
+        - mobile
+        - name
+        - create_time
