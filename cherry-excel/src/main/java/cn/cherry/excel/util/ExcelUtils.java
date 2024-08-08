@@ -1,10 +1,13 @@
 package cn.cherry.excel.util;
 
+import cn.cherry.excel.convert.LocalDateConverter;
+import cn.cherry.excel.convert.LocalDateTimeConverter;
 import cn.cherry.excel.listener.ExcelReadListener;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.alibaba.excel.metadata.Head;
 import com.alibaba.excel.read.builder.ExcelReaderBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
@@ -19,6 +22,7 @@ import java.util.function.Function;
  * @author sinbad.cheng
  * @date 2024/7/28
  */
+@Slf4j
 public class ExcelUtils {
 
     private static final Map<Class<?>, Map<Integer, Head>> DYNAMIC_HEAD_CACHE = new ConcurrentHashMap<>(256);
@@ -53,11 +57,11 @@ public class ExcelUtils {
         try {
             inputStream = new BufferedInputStream(inputStream);
             return EasyExcel.read(inputStream).head(clazz).useDefaultListener(false)
-                    // TODO 待拓展
+                    // TODO 需要时拓展
 //                    .registerReadListener(new RockerModelBuildEventListener())
 //                    .registerReadListener(new DynamicHeadReadListener<>(readListener))
-//                    .registerConverter(LocalDateConverter.INSTANCE)
-//                    .registerConverter(LocalDateTimeConverter.INSTANCE)
+                    .registerConverter(LocalDateConverter.INSTANCE)
+                    .registerConverter(LocalDateTimeConverter.INSTANCE)
                     ;
         } catch (Exception e) {
             throw new RuntimeException(e);

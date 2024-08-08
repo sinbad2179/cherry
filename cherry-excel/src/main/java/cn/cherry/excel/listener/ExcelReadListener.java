@@ -5,6 +5,7 @@ import com.alibaba.excel.event.AnalysisEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Excel 读取监听处理
@@ -31,5 +32,25 @@ public class ExcelReadListener<T> extends AnalysisEventListener<T> {
 
     public List<T> getDataList() {
         return dataList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExcelReadListener<?> that = (ExcelReadListener<?>) o;
+        return Objects.equals(dataList, that.dataList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dataList);
+    }
+
+    @Override
+    public String toString() {
+        return "ExcelReadListener{" +
+                "dataList=" + dataList +
+                '}';
     }
 }

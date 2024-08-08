@@ -1,0 +1,255 @@
+//PUT _template/yl_oms_oms_waybill_template
+{
+  "order": 0,
+  "index_patterns": [
+    "waybill_*"
+  ],
+  "settings": {
+    "index": {
+      "lifecycle": {
+        "name": "180_days_policy"
+      },
+      "search": {
+        "slowlog": {
+          "level": "info",
+          "threshold": {
+            "fetch": {
+              "warn": "1s",
+              "trace": "200ms",
+              "debug": "500ms",
+              "info": "800ms"
+            },
+            "query": {
+              "warn": "10s",
+              "trace": "500ms",
+              "debug": "2s",
+              "info": "5s"
+            }
+          }
+        }
+      },
+      "refresh_interval": "10s",
+      "number_of_shards": "1",
+      "number_of_replicas": "1"
+    }
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "ID": {
+          "type": "long"
+        },
+        "WAYBILL_NO": {
+          "type": "keyword"
+        },
+        "INPUT_TIME": {
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss||yyyy-MM-dd",
+          "type": "date"
+        },
+        "DELIVERY_TIME": {
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss||yyyy-MM-dd",
+          "type": "date"
+        },
+        "SIGN_TIME": {
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss||yyyy-MM-dd",
+          "type": "date"
+        },
+        "DISPATCH_TIME": {
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss||yyyy-MM-dd",
+          "type": "date"
+        },
+        "IS_SETTLEMENT": {
+          "type": "integer"
+        },
+        "PICK_FINANCE_CODE": {
+          "type": "keyword"
+        },
+        "PICK_NETWORK_CODE": {
+          "type": "keyword"
+        },
+        "CUSTOMER_CODE": {
+          "type": "keyword"
+        },
+        "IS_SIGN": {
+          "type": "integer"
+        },
+        "DESTINATION_ID": {
+          "type": "keyword"
+        },
+        "DESTINATION_CODE": {
+          "type": "keyword"
+        },
+        "SETTLEMENT_CODE": {
+          "type": "keyword"
+        },
+        "INSURED": {
+          "type": "integer"
+        },
+        "INSURED_FEE": {
+          "type": "double"
+        },
+        "INSURED_AMOUNT": {
+          "type": "double"
+        },
+        "COLLECT_STAFF_CODE": {
+          "type": "keyword"
+        },
+        "INPUT_STAFF_CODE": {
+          "type": "keyword"
+        },
+        "INPUT_STAFF_BY": {
+          "type": "integer"
+        },
+        "CLAIMS_FLAG": {
+          "type": "integer"
+        },
+        "DISPATCH_CODE": {
+          "type": "keyword"
+        },
+        "IS_VOID": {
+          "type": "integer"
+        },
+        "CALCULATE_FEE_CODE": {
+          "type": "integer"
+        },
+        "FREIGHT": {
+          "type": "double"
+        },
+        "IS_REFUND": {
+          "type": "integer"
+        },
+        "WAYBILL_SOURCE_CODE": {
+          "type": "keyword"
+        },
+        "ORDER_SOURCE_CODE": {
+          "type": "keyword"
+        },
+        "PACKAGE_CHARGE_WEIGHT": {
+          "type": "double"
+        },
+        "PAID_MODE_CODE": {
+          "type": "keyword"
+        },
+        "COD_NEED": {
+          "type": "integer"
+        },
+        "COD_MONEY": {
+          "type": "double"
+        },
+        "COD_FEE": {
+          "type": "double"
+        },
+        "SEND_CODE": {
+          "type": "keyword"
+        },
+        "CUSTOMER_NETWORK_CODE": {
+          "type": "keyword"
+        },
+        "EXPRESS_TYPE_ID": {
+          "type": "integer"
+        },
+        "EXPRESS_TYPE_CODE": {
+          "type": "keyword"
+        },
+        "GOODS_TYPE_CODE": {
+          "type": "keyword"
+        },
+        "IS_ABNORMAL": {
+          "type": "integer"
+        },
+        "OTHER_FEE": {
+          "type": "double"
+        },
+        "PACKAGE_COST": {
+          "type": "double"
+        },
+        "TOTAL_FREIGHT": {
+          "type": "double"
+        },
+        "SIGN_FINANCE_CODE": {
+          "type": "keyword"
+        },
+        "DISPATCH_STAFF_CODE": {
+          "type": "keyword"
+        },
+        "HANDICRAFT_FEE": {
+          "type": "double"
+        },
+        "RECEIVE_PAY_FEE": {
+          "type": "double"
+        },
+        "DISPATCH_NETWORK_CODE": {
+          "type": "keyword"
+        },
+        "DISPATCH_FINANCE_CODE": {
+          "type": "keyword"
+        },
+        "RECEIVER_ENC_PHONE": {
+          "type": "keyword"
+        },
+        "SENDER_ENC_PHONE": {
+          "type": "keyword"
+        },
+        "VERIFY_STATUS": {
+          "type": "integer"
+        },
+        "IS_INTERNATIONAL": {
+          "type": "integer"
+        },
+        "SIGN_NETWORK_CODE": {
+          "type": "keyword"
+        },
+        "RECEIPT_FEE": {
+          "type": "double"
+        },
+        "BUSINESS_MODEL_ID": {
+          "type": "integer"
+        },
+        "TAX": {
+          "type": "double"
+        },
+        "ZERO_VAT": {
+          "type": "double"
+        },
+        "FREE_VAT": {
+          "type": "double"
+        },
+        "COST_AND_FREIGHT": {
+          "type": "double"
+        },
+        "REFUND_FREIGHT": {
+          "type": "double"
+        },
+        "IS_FREE_INSURED_FEE": {
+          "type": "integer"
+        },
+        "WAYBILL_STATUS_CODE": {
+          "type": "integer"
+        },
+        "ASSIGN_EMPLOYEE_CODE": {
+          "type": "keyword"
+        },
+        "SERVICE": {
+          "type": "keyword"
+        },
+        "COD_SETTLEMENT_CATEGORY": {
+          "type": "keyword"
+        },
+        "SIGN_UPLOAD_TIME": {
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss||yyyy-MM-dd",
+          "type": "date"
+        },
+        "SIGN_UPLOAD_TIME_BAK": {
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss||yyyy-MM-dd",
+          "type": "date"
+        },
+        "REAL_NAME": {
+          "type": "keyword"
+        }
+      }
+    }
+  },
+  "aliases": {
+    "yl_oms_oms_waybill_search": {}
+  }
+}
