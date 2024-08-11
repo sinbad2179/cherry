@@ -12,7 +12,9 @@
     <groupId>cn.cherry.rpc</groupId>
     <artifactId>cherry-rpc</artifactId>
     <packaging>jar</packaging>
+<!--
     <version>1.0.3</version>
+-->
 
 
     <!--spring-->

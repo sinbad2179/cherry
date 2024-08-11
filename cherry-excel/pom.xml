@@ -12,7 +12,9 @@
     <groupId>cn.cherry.excel</groupId>
     <artifactId>cherry-excel</artifactId>
 
+<!--
     <packaging>jar</packaging>
+-->
 
 
     <properties>
@@ -54,10 +56,11 @@
             <artifactId>guava</artifactId>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
+        </dependency>-->
+
         <dependency>
             <groupId>cn.cherry.core</groupId>
             <artifactId>cherry-core</artifactId>
