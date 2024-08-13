@@ -31,7 +31,7 @@
                 import：表示从其他pom文件导入dependency
                 system：和provided类似；依赖项不会从Maven仓库下载，而从本地文件系统下载。需要添加systemPath的属性来定义路径，一般用于引用外部jar包
             -->
-            <scope>provided</scope>
+            <version>1.18.20</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
