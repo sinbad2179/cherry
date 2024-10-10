@@ -19,9 +19,6 @@ public class CheckUtils {
     }
 
 
-    public static void main(String[] args) {
-        checkArgument("body" != null, "Body parameter %s was null", "body");
-    }
 
     /**
      * 校验参数是否为空
