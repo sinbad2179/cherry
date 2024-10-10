@@ -38,7 +38,6 @@
                 import：表示从其他pom文件导入dependency
                 system：和provided类似；依赖项不会从Maven仓库下载，而从本地文件系统下载。需要添加systemPath的属性来定义路径，一般用于引用外部jar包
             -->
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -78,12 +77,6 @@
             <version>2.1.12.RELEASE</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- mybatis plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -107,6 +100,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
                 <configuration>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>

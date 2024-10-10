@@ -9,7 +9,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>cn.cherry.executor</groupId>
     <artifactId>cherry-executor</artifactId>
 
     <properties>
